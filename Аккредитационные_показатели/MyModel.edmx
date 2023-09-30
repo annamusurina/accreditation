@@ -1,0 +1,816 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Аккредитационные_показателиModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcademicLoad">
+          <Key>
+            <PropertyRef Name="Code_academic" />
+          </Key>
+          <Property Name="Code_academic" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code_teacher" Type="int" Nullable="false" />
+          <Property Name="Code_semester" Type="int" Nullable="false" />
+          <Property Name="NumberHours_academic" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="BidShare_academic" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Admission_student">
+          <Key>
+            <PropertyRef Name="Code_adst" />
+          </Key>
+          <Property Name="Code_adst" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code_dt" Type="int" Nullable="false" />
+          <Property Name="AcademicYear_adst" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="As_teacher_pract">
+          <Key>
+            <PropertyRef Name="Code_as" />
+          </Key>
+          <Property Name="Code_as" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code_teacher" Type="int" Nullable="false" />
+          <Property Name="Code_practitioner" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DirectionTraining">
+          <Key>
+            <PropertyRef Name="Code_dt" />
+          </Key>
+          <Property Name="Code_dt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code_levels" Type="int" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title_dt" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Disciplines">
+          <Key>
+            <PropertyRef Name="Code_discipline" />
+          </Key>
+          <Property Name="Code_discipline" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title_discipline" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DisciplinesSemester">
+          <Key>
+            <PropertyRef Name="Code_semester" />
+          </Key>
+          <Property Name="Code_semester" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code_adst" Type="int" Nullable="false" />
+          <Property Name="Code_discipline" Type="int" Nullable="false" />
+          <Property Name="Semester" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="HoursLectures_discipline" Type="varchar" MaxLength="10" />
+          <Property Name="HoursPractice_discipline" Type="varchar" MaxLength="10" />
+          <Property Name="HoursLaboratory_discipline" Type="varchar" MaxLength="10" />
+          <Property Name="HoursCredits_discipline" Type="varchar" MaxLength="10" />
+          <Property Name="HoursExam_discipline" Type="varchar" MaxLength="10" />
+          <Property Name="HoursConsultation_discipline" Type="varchar" MaxLength="10" />
+          <Property Name="HoursCoursework_discipline" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="EducationLevels">
+          <Key>
+            <PropertyRef Name="Code_levels" />
+          </Key>
+          <Property Name="Code_levels" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title_levels" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoadRate">
+          <Key>
+            <PropertyRef Name="Code_lr" />
+          </Key>
+          <Property Name="Code_lr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number_hours" Type="int" Nullable="false" />
+          <Property Name="AcademicYear_load" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code_position" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Management_Master_degree_program">
+          <Key>
+            <PropertyRef Name="Code_management" />
+          </Key>
+          <Property Name="Code_management" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code_teacher" Type="int" Nullable="false" />
+          <Property Name="ResearchProject_management" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DomesticPublications_management" Type="varchar" MaxLength="400" />
+          <Property Name="ForeignPublications_management" Type="varchar" MaxLength="400" />
+          <Property Name="Approbation_management" Type="varchar" MaxLength="800" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Code_position" />
+          </Key>
+          <Property Name="Code_position" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Practitioners">
+          <Key>
+            <PropertyRef Name="Code_practitioner" />
+          </Key>
+          <Property Name="Code_practitioner" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO_practitioner" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TitleOrg_practitioner" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Position_practitioner" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PeriodOperation_practitioner" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="WorkExperience_practitioner" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="Code_teacher" />
+          </Key>
+          <Property Name="Code_teacher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO_teacher" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TermsAttraction_teacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code_position" Type="int" Nullable="false" />
+          <Property Name="AcademicDegree_teacher" Type="varchar" MaxLength="100" />
+          <Property Name="AcademicTitle_teacher" Type="varchar" MaxLength="100" />
+          <Property Name="EducationLevel_teacher" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TitleSpecialty_teacher" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AssignedQualification_teacher" Type="varchar" MaxLength="100" />
+          <Property Name="AdditionalProfEducation_teacher" Type="varchar" MaxLength="100" />
+          <Property Name="WorkEducationalActivities_teacher" Type="varchar" MaxLength="100" />
+          <Property Name="WorkOtherOrg_teacher" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__AcademicL__Code___4316F928">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="AcademicLoad" Type="Self.AcademicLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="Code_teacher" />
+            </Principal>
+            <Dependent Role="AcademicLoad">
+              <PropertyRef Name="Code_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicL__Code___440B1D61">
+          <End Role="DisciplinesSemester" Type="Self.DisciplinesSemester" Multiplicity="1" />
+          <End Role="AcademicLoad" Type="Self.AcademicLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DisciplinesSemester">
+              <PropertyRef Name="Code_semester" />
+            </Principal>
+            <Dependent Role="AcademicLoad">
+              <PropertyRef Name="Code_semester" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Admission__Code___3A81B327">
+          <End Role="DirectionTraining" Type="Self.DirectionTraining" Multiplicity="1" />
+          <End Role="Admission_student" Type="Self.Admission_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DirectionTraining">
+              <PropertyRef Name="Code_dt" />
+            </Principal>
+            <Dependent Role="Admission_student">
+              <PropertyRef Name="Code_dt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__As_teache__Code___2F10007B">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="As_teacher_pract" Type="Self.As_teacher_pract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="Code_teacher" />
+            </Principal>
+            <Dependent Role="As_teacher_pract">
+              <PropertyRef Name="Code_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__As_teache__Code___300424B4">
+          <End Role="Practitioners" Type="Self.Practitioners" Multiplicity="1" />
+          <End Role="As_teacher_pract" Type="Self.As_teacher_pract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Practitioners">
+              <PropertyRef Name="Code_practitioner" />
+            </Principal>
+            <Dependent Role="As_teacher_pract">
+              <PropertyRef Name="Code_practitioner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Direction__Code___37A5467C">
+          <End Role="EducationLevels" Type="Self.EducationLevels" Multiplicity="1" />
+          <End Role="DirectionTraining" Type="Self.DirectionTraining" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EducationLevels">
+              <PropertyRef Name="Code_levels" />
+            </Principal>
+            <Dependent Role="DirectionTraining">
+              <PropertyRef Name="Code_levels" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Disciplin__Code___3F466844">
+          <End Role="Admission_student" Type="Self.Admission_student" Multiplicity="1" />
+          <End Role="DisciplinesSemester" Type="Self.DisciplinesSemester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admission_student">
+              <PropertyRef Name="Code_adst" />
+            </Principal>
+            <Dependent Role="DisciplinesSemester">
+              <PropertyRef Name="Code_adst" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Disciplin__Code___403A8C7D">
+          <End Role="Disciplines" Type="Self.Disciplines" Multiplicity="1" />
+          <End Role="DisciplinesSemester" Type="Self.DisciplinesSemester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disciplines">
+              <PropertyRef Name="Code_discipline" />
+            </Principal>
+            <Dependent Role="DisciplinesSemester">
+              <PropertyRef Name="Code_discipline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LoadRate__Code_p__267ABA7A">
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="LoadRate" Type="Self.LoadRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Code_position" />
+            </Principal>
+            <Dependent Role="LoadRate">
+              <PropertyRef Name="Code_position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Managemen__Code___32E0915F">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Management_Master_degree_program" Type="Self.Management_Master_degree_program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="Code_teacher" />
+            </Principal>
+            <Dependent Role="Management_Master_degree_program">
+              <PropertyRef Name="Code_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Teacher__Code_po__2A4B4B5E">
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Code_position" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="Code_position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Аккредитационные_показателиModelContainer">
+          <EntitySet Name="AcademicLoad" EntityType="Self.AcademicLoad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Admission_student" EntityType="Self.Admission_student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="As_teacher_pract" EntityType="Self.As_teacher_pract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DirectionTraining" EntityType="Self.DirectionTraining" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Disciplines" EntityType="Self.Disciplines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DisciplinesSemester" EntityType="Self.DisciplinesSemester" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EducationLevels" EntityType="Self.EducationLevels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoadRate" EntityType="Self.LoadRate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Management_Master_degree_program" EntityType="Self.Management_Master_degree_program" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Practitioners" EntityType="Self.Practitioners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AcademicL__Code___4316F928" Association="Self.FK__AcademicL__Code___4316F928">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicL__Code___440B1D61" Association="Self.FK__AcademicL__Code___440B1D61">
+            <End Role="DisciplinesSemester" EntitySet="DisciplinesSemester" />
+            <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Admission__Code___3A81B327" Association="Self.FK__Admission__Code___3A81B327">
+            <End Role="DirectionTraining" EntitySet="DirectionTraining" />
+            <End Role="Admission_student" EntitySet="Admission_student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__As_teache__Code___2F10007B" Association="Self.FK__As_teache__Code___2F10007B">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="As_teacher_pract" EntitySet="As_teacher_pract" />
+          </AssociationSet>
+          <AssociationSet Name="FK__As_teache__Code___300424B4" Association="Self.FK__As_teache__Code___300424B4">
+            <End Role="Practitioners" EntitySet="Practitioners" />
+            <End Role="As_teacher_pract" EntitySet="As_teacher_pract" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Direction__Code___37A5467C" Association="Self.FK__Direction__Code___37A5467C">
+            <End Role="EducationLevels" EntitySet="EducationLevels" />
+            <End Role="DirectionTraining" EntitySet="DirectionTraining" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Disciplin__Code___3F466844" Association="Self.FK__Disciplin__Code___3F466844">
+            <End Role="Admission_student" EntitySet="Admission_student" />
+            <End Role="DisciplinesSemester" EntitySet="DisciplinesSemester" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Disciplin__Code___403A8C7D" Association="Self.FK__Disciplin__Code___403A8C7D">
+            <End Role="Disciplines" EntitySet="Disciplines" />
+            <End Role="DisciplinesSemester" EntitySet="DisciplinesSemester" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LoadRate__Code_p__267ABA7A" Association="Self.FK__LoadRate__Code_p__267ABA7A">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="LoadRate" EntitySet="LoadRate" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Managemen__Code___32E0915F" Association="Self.FK__Managemen__Code___32E0915F">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Management_Master_degree_program" EntitySet="Management_Master_degree_program" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Teacher__Code_po__2A4B4B5E" Association="Self.FK__Teacher__Code_po__2A4B4B5E">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Аккредитационные_показателиModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AcademicLoad">
+          <Key>
+            <PropertyRef Name="Code_academic" />
+          </Key>
+          <Property Name="Code_academic" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_teacher" Type="Int32" Nullable="false" />
+          <Property Name="Code_semester" Type="Int32" Nullable="false" />
+          <Property Name="NumberHours_academic" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BidShare_academic" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK__AcademicL__Code___4316F928" FromRole="AcademicLoad" ToRole="Teacher" />
+          <NavigationProperty Name="DisciplinesSemester" Relationship="Self.FK__AcademicL__Code___440B1D61" FromRole="AcademicLoad" ToRole="DisciplinesSemester" />
+        </EntityType>
+        <EntityType Name="Admission_student">
+          <Key>
+            <PropertyRef Name="Code_adst" />
+          </Key>
+          <Property Name="Code_adst" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_dt" Type="Int32" Nullable="false" />
+          <Property Name="AcademicYear_adst" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DirectionTraining" Relationship="Self.FK__Admission__Code___3A81B327" FromRole="Admission_student" ToRole="DirectionTraining" />
+          <NavigationProperty Name="DisciplinesSemester" Relationship="Self.FK__Disciplin__Code___3F466844" FromRole="Admission_student" ToRole="DisciplinesSemester" />
+        </EntityType>
+        <EntityType Name="As_teacher_pract">
+          <Key>
+            <PropertyRef Name="Code_as" />
+          </Key>
+          <Property Name="Code_as" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_teacher" Type="Int32" Nullable="false" />
+          <Property Name="Code_practitioner" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK__As_teache__Code___2F10007B" FromRole="As_teacher_pract" ToRole="Teacher" />
+          <NavigationProperty Name="Practitioners" Relationship="Self.FK__As_teache__Code___300424B4" FromRole="As_teacher_pract" ToRole="Practitioners" />
+        </EntityType>
+        <EntityType Name="DirectionTraining">
+          <Key>
+            <PropertyRef Name="Code_dt" />
+          </Key>
+          <Property Name="Code_dt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_levels" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Title_dt" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Admission_student" Relationship="Self.FK__Admission__Code___3A81B327" FromRole="DirectionTraining" ToRole="Admission_student" />
+          <NavigationProperty Name="EducationLevels" Relationship="Self.FK__Direction__Code___37A5467C" FromRole="DirectionTraining" ToRole="EducationLevels" />
+        </EntityType>
+        <EntityType Name="Disciplines">
+          <Key>
+            <PropertyRef Name="Code_discipline" />
+          </Key>
+          <Property Name="Code_discipline" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title_discipline" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DisciplinesSemester" Relationship="Self.FK__Disciplin__Code___403A8C7D" FromRole="Disciplines" ToRole="DisciplinesSemester" />
+        </EntityType>
+        <EntityType Name="DisciplinesSemester">
+          <Key>
+            <PropertyRef Name="Code_semester" />
+          </Key>
+          <Property Name="Code_semester" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_adst" Type="Int32" Nullable="false" />
+          <Property Name="Code_discipline" Type="Int32" Nullable="false" />
+          <Property Name="Semester" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HoursLectures_discipline" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HoursPractice_discipline" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HoursLaboratory_discipline" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HoursCredits_discipline" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HoursExam_discipline" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HoursConsultation_discipline" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HoursCoursework_discipline" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AcademicLoad" Relationship="Self.FK__AcademicL__Code___440B1D61" FromRole="DisciplinesSemester" ToRole="AcademicLoad" />
+          <NavigationProperty Name="Admission_student" Relationship="Self.FK__Disciplin__Code___3F466844" FromRole="DisciplinesSemester" ToRole="Admission_student" />
+          <NavigationProperty Name="Disciplines" Relationship="Self.FK__Disciplin__Code___403A8C7D" FromRole="DisciplinesSemester" ToRole="Disciplines" />
+        </EntityType>
+        <EntityType Name="EducationLevels">
+          <Key>
+            <PropertyRef Name="Code_levels" />
+          </Key>
+          <Property Name="Code_levels" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title_levels" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DirectionTraining" Relationship="Self.FK__Direction__Code___37A5467C" FromRole="EducationLevels" ToRole="DirectionTraining" />
+        </EntityType>
+        <EntityType Name="LoadRate">
+          <Key>
+            <PropertyRef Name="Code_lr" />
+          </Key>
+          <Property Name="Code_lr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number_hours" Type="Int32" Nullable="false" />
+          <Property Name="AcademicYear_load" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code_position" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Position" Relationship="Self.FK__LoadRate__Code_p__267ABA7A" FromRole="LoadRate" ToRole="Position" />
+        </EntityType>
+        <EntityType Name="Management_Master_degree_program">
+          <Key>
+            <PropertyRef Name="Code_management" />
+          </Key>
+          <Property Name="Code_management" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_teacher" Type="Int32" Nullable="false" />
+          <Property Name="ResearchProject_management" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DomesticPublications_management" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="ForeignPublications_management" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Approbation_management" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK__Managemen__Code___32E0915F" FromRole="Management_Master_degree_program" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Code_position" />
+          </Key>
+          <Property Name="Code_position" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LoadRate" Relationship="Self.FK__LoadRate__Code_p__267ABA7A" FromRole="Position" ToRole="LoadRate" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK__Teacher__Code_po__2A4B4B5E" FromRole="Position" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="Practitioners">
+          <Key>
+            <PropertyRef Name="Code_practitioner" />
+          </Key>
+          <Property Name="Code_practitioner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO_practitioner" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TitleOrg_practitioner" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Position_practitioner" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PeriodOperation_practitioner" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WorkExperience_practitioner" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="As_teacher_pract" Relationship="Self.FK__As_teache__Code___300424B4" FromRole="Practitioners" ToRole="As_teacher_pract" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="Code_teacher" />
+          </Key>
+          <Property Name="Code_teacher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO_teacher" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TermsAttraction_teacher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code_position" Type="Int32" Nullable="false" />
+          <Property Name="AcademicDegree_teacher" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AcademicTitle_teacher" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EducationLevel_teacher" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TitleSpecialty_teacher" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AssignedQualification_teacher" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalProfEducation_teacher" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WorkEducationalActivities_teacher" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WorkOtherOrg_teacher" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AcademicLoad" Relationship="Self.FK__AcademicL__Code___4316F928" FromRole="Teacher" ToRole="AcademicLoad" />
+          <NavigationProperty Name="As_teacher_pract" Relationship="Self.FK__As_teache__Code___2F10007B" FromRole="Teacher" ToRole="As_teacher_pract" />
+          <NavigationProperty Name="Management_Master_degree_program" Relationship="Self.FK__Managemen__Code___32E0915F" FromRole="Teacher" ToRole="Management_Master_degree_program" />
+          <NavigationProperty Name="Position" Relationship="Self.FK__Teacher__Code_po__2A4B4B5E" FromRole="Teacher" ToRole="Position" />
+        </EntityType>
+        <Association Name="FK__AcademicL__Code___4316F928">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="AcademicLoad" Type="Self.AcademicLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="Code_teacher" />
+            </Principal>
+            <Dependent Role="AcademicLoad">
+              <PropertyRef Name="Code_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicL__Code___440B1D61">
+          <End Role="DisciplinesSemester" Type="Self.DisciplinesSemester" Multiplicity="1" />
+          <End Role="AcademicLoad" Type="Self.AcademicLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DisciplinesSemester">
+              <PropertyRef Name="Code_semester" />
+            </Principal>
+            <Dependent Role="AcademicLoad">
+              <PropertyRef Name="Code_semester" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Admission__Code___3A81B327">
+          <End Role="DirectionTraining" Type="Self.DirectionTraining" Multiplicity="1" />
+          <End Role="Admission_student" Type="Self.Admission_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DirectionTraining">
+              <PropertyRef Name="Code_dt" />
+            </Principal>
+            <Dependent Role="Admission_student">
+              <PropertyRef Name="Code_dt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Disciplin__Code___3F466844">
+          <End Role="Admission_student" Type="Self.Admission_student" Multiplicity="1" />
+          <End Role="DisciplinesSemester" Type="Self.DisciplinesSemester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admission_student">
+              <PropertyRef Name="Code_adst" />
+            </Principal>
+            <Dependent Role="DisciplinesSemester">
+              <PropertyRef Name="Code_adst" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__As_teache__Code___2F10007B">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="As_teacher_pract" Type="Self.As_teacher_pract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="Code_teacher" />
+            </Principal>
+            <Dependent Role="As_teacher_pract">
+              <PropertyRef Name="Code_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__As_teache__Code___300424B4">
+          <End Role="Practitioners" Type="Self.Practitioners" Multiplicity="1" />
+          <End Role="As_teacher_pract" Type="Self.As_teacher_pract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Practitioners">
+              <PropertyRef Name="Code_practitioner" />
+            </Principal>
+            <Dependent Role="As_teacher_pract">
+              <PropertyRef Name="Code_practitioner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Direction__Code___37A5467C">
+          <End Role="EducationLevels" Type="Self.EducationLevels" Multiplicity="1" />
+          <End Role="DirectionTraining" Type="Self.DirectionTraining" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EducationLevels">
+              <PropertyRef Name="Code_levels" />
+            </Principal>
+            <Dependent Role="DirectionTraining">
+              <PropertyRef Name="Code_levels" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Disciplin__Code___403A8C7D">
+          <End Role="Disciplines" Type="Self.Disciplines" Multiplicity="1" />
+          <End Role="DisciplinesSemester" Type="Self.DisciplinesSemester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disciplines">
+              <PropertyRef Name="Code_discipline" />
+            </Principal>
+            <Dependent Role="DisciplinesSemester">
+              <PropertyRef Name="Code_discipline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LoadRate__Code_p__267ABA7A">
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="LoadRate" Type="Self.LoadRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Code_position" />
+            </Principal>
+            <Dependent Role="LoadRate">
+              <PropertyRef Name="Code_position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Managemen__Code___32E0915F">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Management_Master_degree_program" Type="Self.Management_Master_degree_program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="Code_teacher" />
+            </Principal>
+            <Dependent Role="Management_Master_degree_program">
+              <PropertyRef Name="Code_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Teacher__Code_po__2A4B4B5E">
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Code_position" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="Code_position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Аккредитационные_показателиEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AcademicLoad" EntityType="Self.AcademicLoad" />
+          <EntitySet Name="Admission_student" EntityType="Self.Admission_student" />
+          <EntitySet Name="As_teacher_pract" EntityType="Self.As_teacher_pract" />
+          <EntitySet Name="DirectionTraining" EntityType="Self.DirectionTraining" />
+          <EntitySet Name="Disciplines" EntityType="Self.Disciplines" />
+          <EntitySet Name="DisciplinesSemester" EntityType="Self.DisciplinesSemester" />
+          <EntitySet Name="EducationLevels" EntityType="Self.EducationLevels" />
+          <EntitySet Name="LoadRate" EntityType="Self.LoadRate" />
+          <EntitySet Name="Management_Master_degree_program" EntityType="Self.Management_Master_degree_program" />
+          <EntitySet Name="Position" EntityType="Self.Position" />
+          <EntitySet Name="Practitioners" EntityType="Self.Practitioners" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+          <AssociationSet Name="FK__AcademicL__Code___4316F928" Association="Self.FK__AcademicL__Code___4316F928">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicL__Code___440B1D61" Association="Self.FK__AcademicL__Code___440B1D61">
+            <End Role="DisciplinesSemester" EntitySet="DisciplinesSemester" />
+            <End Role="AcademicLoad" EntitySet="AcademicLoad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Admission__Code___3A81B327" Association="Self.FK__Admission__Code___3A81B327">
+            <End Role="DirectionTraining" EntitySet="DirectionTraining" />
+            <End Role="Admission_student" EntitySet="Admission_student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Disciplin__Code___3F466844" Association="Self.FK__Disciplin__Code___3F466844">
+            <End Role="Admission_student" EntitySet="Admission_student" />
+            <End Role="DisciplinesSemester" EntitySet="DisciplinesSemester" />
+          </AssociationSet>
+          <AssociationSet Name="FK__As_teache__Code___2F10007B" Association="Self.FK__As_teache__Code___2F10007B">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="As_teacher_pract" EntitySet="As_teacher_pract" />
+          </AssociationSet>
+          <AssociationSet Name="FK__As_teache__Code___300424B4" Association="Self.FK__As_teache__Code___300424B4">
+            <End Role="Practitioners" EntitySet="Practitioners" />
+            <End Role="As_teacher_pract" EntitySet="As_teacher_pract" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Direction__Code___37A5467C" Association="Self.FK__Direction__Code___37A5467C">
+            <End Role="EducationLevels" EntitySet="EducationLevels" />
+            <End Role="DirectionTraining" EntitySet="DirectionTraining" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Disciplin__Code___403A8C7D" Association="Self.FK__Disciplin__Code___403A8C7D">
+            <End Role="Disciplines" EntitySet="Disciplines" />
+            <End Role="DisciplinesSemester" EntitySet="DisciplinesSemester" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LoadRate__Code_p__267ABA7A" Association="Self.FK__LoadRate__Code_p__267ABA7A">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="LoadRate" EntitySet="LoadRate" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Managemen__Code___32E0915F" Association="Self.FK__Managemen__Code___32E0915F">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Management_Master_degree_program" EntitySet="Management_Master_degree_program" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Teacher__Code_po__2A4B4B5E" Association="Self.FK__Teacher__Code_po__2A4B4B5E">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Аккредитационные_показателиModelContainer" CdmEntityContainer="Аккредитационные_показателиEntities">
+          <EntitySetMapping Name="AcademicLoad">
+            <EntityTypeMapping TypeName="Аккредитационные_показателиModel.AcademicLoad">
+              <MappingFragment StoreEntitySet="AcademicLoad">
+                <ScalarProperty Name="Code_academic" ColumnName="Code_academic" />
+                <ScalarProperty Name="Code_teacher" ColumnName="Code_teacher" />
+                <ScalarProperty Name="Code_semester" ColumnName="Code_semester" />
+                <ScalarProperty Name="NumberHours_academic" ColumnName="NumberHours_academic" />
+                <ScalarProperty Name="BidShare_academic" ColumnName="BidShare_academic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admission_student">
+            <EntityTypeMapping TypeName="Аккредитационные_показателиModel.Admission_student">
+              <MappingFragment StoreEntitySet="Admission_student">
+                <ScalarProperty Name="Code_adst" ColumnName="Code_adst" />
+                <ScalarProperty Name="Code_dt" ColumnName="Code_dt" />
+                <ScalarProperty Name="AcademicYear_adst" ColumnName="AcademicYear_adst" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="As_teacher_pract">
+            <EntityTypeMapping TypeName="Аккредитационные_показателиModel.As_teacher_pract">
+              <MappingFragment StoreEntitySet="As_teacher_pract">
+                <ScalarProperty Name="Code_as" ColumnName="Code_as" />
+                <ScalarProperty Name="Code_teacher" ColumnName="Code_teacher" />
+                <ScalarProperty Name="Code_practitioner" ColumnName="Code_practitioner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DirectionTraining">
+            <EntityTypeMapping TypeName="Аккредитационные_показателиModel.DirectionTraining">
+              <MappingFragment StoreEntitySet="DirectionTraining">
+                <ScalarProperty Name="Code_dt" ColumnName="Code_dt" />
+                <ScalarProperty Name="Code_levels" ColumnName="Code_levels" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title_dt" ColumnName="Title_dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Disciplines">
+            <EntityTypeMapping TypeName="Аккредитационные_показателиModel.Disciplines">
+              <MappingFragment StoreEntitySet="Disciplines">
+                <ScalarProperty Name="Code_discipline" ColumnName="Code_discipline" />
+                <ScalarProperty Name="Title_discipline" ColumnName="Title_discipline" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DisciplinesSemester">
+            <EntityTypeMapping TypeName="Аккредитационные_показателиModel.DisciplinesSemester">
+              <MappingFragment StoreEntitySet="DisciplinesSemester">
+                <ScalarProperty Name="Code_semester" ColumnName="Code_semester" />
+                <ScalarProperty Name="Code_adst" ColumnName="Code_adst" />
+                <ScalarProperty Name="Code_discipline" ColumnName="Code_discipline" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="HoursLectures_discipline" ColumnName="HoursLectures_discipline" />
+                <ScalarProperty Name="HoursPractice_discipline" ColumnName="HoursPractice_discipline" />
+                <ScalarProperty Name="HoursLaboratory_discipline" ColumnName="HoursLaboratory_discipline" />
+                <ScalarProperty Name="HoursCredits_discipline" ColumnName="HoursCredits_discipline" />
+                <ScalarProperty Name="HoursExam_discipline" ColumnName="HoursExam_discipline" />
+                <ScalarProperty Name="HoursConsultation_discipline" ColumnName="HoursConsultation_discipline" />
+                <ScalarProperty Name="HoursCoursework_discipline" ColumnName="HoursCoursework_discipline" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EducationLevels">
+            <EntityTypeMapping TypeName="Аккредитационные_показателиModel.EducationLevels">
+              <MappingFragment StoreEntitySet="EducationLevels">
+                <ScalarProperty Name="Code_levels" ColumnName="Code_levels" />
+                <ScalarProperty Name="Title_levels" ColumnName="Title_levels" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoadRate">
+            <EntityTypeMapping TypeName="Аккредитационные_показателиModel.LoadRate">
+              <MappingFragment StoreEntitySet="LoadRate">
+                <ScalarProperty Name="Code_lr" ColumnName="Code_lr" />
+                <ScalarProperty Name="Number_hours" ColumnName="Number_hours" />
+                <ScalarProperty Name="AcademicYear_load" ColumnName="AcademicYear_load" />
+                <ScalarProperty Name="Code_position" ColumnName="Code_position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Management_Master_degree_program">
+            <EntityTypeMapping TypeName="Аккредитационные_показателиModel.Management_Master_degree_program">
+              <MappingFragment StoreEntitySet="Management_Master_degree_program">
+                <ScalarProperty Name="Code_management" ColumnName="Code_management" />
+                <ScalarProperty Name="Code_teacher" ColumnName="Code_teacher" />
+                <ScalarProperty Name="ResearchProject_management" ColumnName="ResearchProject_management" />
+                <ScalarProperty Name="DomesticPublications_management" ColumnName="DomesticPublications_management" />
+                <ScalarProperty Name="ForeignPublications_management" ColumnName="ForeignPublications_management" />
+                <ScalarProperty Name="Approbation_management" ColumnName="Approbation_management" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Position">
+            <EntityTypeMapping TypeName="Аккредитационные_показателиModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="Code_position" ColumnName="Code_position" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Practitioners">
+            <EntityTypeMapping TypeName="Аккредитационные_показателиModel.Practitioners">
+              <MappingFragment StoreEntitySet="Practitioners">
+                <ScalarProperty Name="Code_practitioner" ColumnName="Code_practitioner" />
+                <ScalarProperty Name="FIO_practitioner" ColumnName="FIO_practitioner" />
+                <ScalarProperty Name="TitleOrg_practitioner" ColumnName="TitleOrg_practitioner" />
+                <ScalarProperty Name="Position_practitioner" ColumnName="Position_practitioner" />
+                <ScalarProperty Name="PeriodOperation_practitioner" ColumnName="PeriodOperation_practitioner" />
+                <ScalarProperty Name="WorkExperience_practitioner" ColumnName="WorkExperience_practitioner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher">
+            <EntityTypeMapping TypeName="Аккредитационные_показателиModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="Code_teacher" ColumnName="Code_teacher" />
+                <ScalarProperty Name="FIO_teacher" ColumnName="FIO_teacher" />
+                <ScalarProperty Name="TermsAttraction_teacher" ColumnName="TermsAttraction_teacher" />
+                <ScalarProperty Name="Code_position" ColumnName="Code_position" />
+                <ScalarProperty Name="AcademicDegree_teacher" ColumnName="AcademicDegree_teacher" />
+                <ScalarProperty Name="AcademicTitle_teacher" ColumnName="AcademicTitle_teacher" />
+                <ScalarProperty Name="EducationLevel_teacher" ColumnName="EducationLevel_teacher" />
+                <ScalarProperty Name="TitleSpecialty_teacher" ColumnName="TitleSpecialty_teacher" />
+                <ScalarProperty Name="AssignedQualification_teacher" ColumnName="AssignedQualification_teacher" />
+                <ScalarProperty Name="AdditionalProfEducation_teacher" ColumnName="AdditionalProfEducation_teacher" />
+                <ScalarProperty Name="WorkEducationalActivities_teacher" ColumnName="WorkEducationalActivities_teacher" />
+                <ScalarProperty Name="WorkOtherOrg_teacher" ColumnName="WorkOtherOrg_teacher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
